@@ -28,7 +28,7 @@ export default function Card() {
               </div>
             </div>
             <button className="mt-3 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
-              Apply Now
+              View Details
             </button>
           </div>
         </div>
