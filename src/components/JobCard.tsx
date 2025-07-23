@@ -1,7 +1,9 @@
+import { JobType } from "@/app/(public)/page";
 import Link from "next/link";
 import { CiLocationOn } from "react-icons/ci";
 import { CiStopwatch } from "react-icons/ci";
-const JobCard = () => {
+
+const JobCard = ({ job }: { job: JobType }) => {
   return (
     <>
       <div className="flex items-center w-full max-w-4xl mx-auto mb-6">
@@ -10,27 +12,27 @@ const JobCard = () => {
             <div className="border-b border-gray-300 pb-2">
               <div className="flex justify-between">
                 <p className="text-lg font-semibold text-gray-800 mb-1">
-                  Senior Frontend Developer
+                  {job.title}
                 </p>
-                <p className="text-gray-600">$120,000 - $150,000</p>
+                <p className="text-gray-600">{job.salaryRange}</p>
               </div>
               <p className="text-lg font-medium text-primary mb-1 text-blue-600">
-                TechCorp
+                {job.companyName}
               </p>
               <div className="flex gap-2 text-gray-500">
                 <div className="flex gap-1">
-                  <CiLocationOn className="mt-1" />{" "}
-                  <p className="flex">San Francisco, CA</p>
+                  <CiLocationOn className="mt-1" />
+                  <p className="flex">{job.location}</p>
                 </div>
                 <div className="flex gap-1">
-                  <CiStopwatch className="mt-1" />{" "}
-                  <p className="flex">Full-time</p>
+                  <CiStopwatch className="mt-1" />
+                  <p className="flex">{job.jobType}</p>
                 </div>
               </div>
             </div>
             <Link
               className="mt-3 bg-blue-600 flex justify-center text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
-              href="/job-details"
+              href={{ pathname: "/job-details", query: { id: job.id } }}
             >
               View Details
             </Link>
