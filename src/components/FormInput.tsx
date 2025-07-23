@@ -2,10 +2,12 @@
 import { FieldError } from "react-hook-form";
 
 const FormInput = ({
+  type,
   label,
   register,
   error,
 }: {
+  type?: string;
   label: string;
   register: any;
   error: FieldError | undefined;
@@ -14,6 +16,7 @@ const FormInput = ({
     <div className="m-2">
       <label>{label} *</label>
       <input
+        type={type ? type : "text"}
         className="mt-1 h-9 w-full border border-gray-300 rounded-md text-black text-base pl-4"
         {...register}
       />
