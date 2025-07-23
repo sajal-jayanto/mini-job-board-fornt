@@ -31,7 +31,7 @@ const ApplicationForm = () => {
         body: JSON.stringify({ name, email, fileUrl }),
       });
       if (!res.ok) {
-        throw new Error("Failed to submit application");
+        console.log("Internal server error!");
       }
       setSubmitted(true);
       reset();

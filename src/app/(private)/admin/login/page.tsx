@@ -1,6 +1,10 @@
 "use client";
 
 import FormInput from "@/components/FormInput";
+import { setAuthToken } from "@/lib/auth";
+// import { cookies } from "next/headers";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 type FormValues = {
@@ -9,16 +13,38 @@ type FormValues = {
 };
 
 const AdminLogin = () => {
+  const [submitted, setSubmitted] = useState(false);
   const defaultValues = { email: "", password: "" };
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ defaultValues });
 
-  const onSubmit = (value: FormValues) => {
+  const onSubmit = async (value: FormValues) => {
     const { email, password } = value;
-    console.log(email, password);
+    try {
+      const res = await fetch(`http://localhost:3001/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        const isSuccess = await setAuthToken(data.token);
+        if (isSuccess) {
+          router.replace("/admin");
+        }
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+    }
   };
 
   return (
@@ -30,6 +56,11 @@ const AdminLogin = () => {
               Shomvob
             </div>
           </div>
+          {submitted && (
+            <div className="m-2 p-2 rounded-md bg-red-100 text-red-800 text-sm border border-red-300">
+              Invalid email or password!
+            </div>
+          )}
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormInput
               label="Email Address"
