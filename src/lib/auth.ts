@@ -18,3 +18,14 @@ export const setAuthToken = async (token: string) => {
     return false;
   }
 }
+
+export const getAuthToken = async () => {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("token")?.value || "";
+    return token;
+  } catch (error) {
+    console.error("Failed to retrieve auth tokens:", error);
+    return "";
+  }
+}

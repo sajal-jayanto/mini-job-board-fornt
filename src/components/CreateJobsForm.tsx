@@ -1,6 +1,7 @@
 "use client";
 import FormInput from "@/components/FormInput";
 import FormTextarea from "@/components/FormTextarea";
+import { getAuthToken } from "@/lib/auth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -34,12 +35,47 @@ const CreateJobsForm = () => {
     formState: { errors },
   } = useForm<FormValues>({ defaultValues });
 
-  const onSubmit = (value: FormValues) => {
-    const { title, companyName, location, jobType, salaryRange } = value;
+  const onSubmit = async (value: FormValues) => {
+    const {
+      title,
+      companyName,
+      location,
+      jobType,
+      salaryRange,
+      description,
+      requirements,
+      benefits,
+    } = value;
+    try {
+      const token = await getAuthToken();
+      const res = await fetch(`http://localhost:3001/jobs`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title,
+          companyName,
+          location,
+          jobType,
+          salaryRange,
+          description,
+          requirements,
+          benefits,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        console.log(data);
+        setSubmitted(true);
+        reset();
+        setTimeout(() => setSubmitted(false), 4000);
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+    }
     console.log(title, companyName, location, jobType, salaryRange);
-    setSubmitted(true);
-    reset();
-    setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
