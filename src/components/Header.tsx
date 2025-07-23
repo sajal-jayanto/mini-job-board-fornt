@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Header = () => {
   return (
     <nav className="bg-blue-600 shadow-md">
@@ -5,7 +7,7 @@ const Header = () => {
         <div className="flex justify-between h-20">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center text-2xl font-bold text-white">
-              Shomvob
+              <Link href="/">Shomvob</Link>
             </div>
           </div>
         </div>

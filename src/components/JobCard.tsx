@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CiLocationOn } from "react-icons/ci";
 import { CiStopwatch } from "react-icons/ci";
 const JobCard = () => {
@@ -27,9 +28,12 @@ const JobCard = () => {
                 </div>
               </div>
             </div>
-            <button className="mt-3 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+            <Link
+              className="mt-3 bg-blue-600 flex justify-center text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
+              href="/job-details"
+            >
               View Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>

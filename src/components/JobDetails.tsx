@@ -2,6 +2,7 @@ import { CiLocationOn, CiStopwatch } from "react-icons/ci";
 import { FcKindle } from "react-icons/fc";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { FaHandPointRight } from "react-icons/fa";
+import Link from "next/link";
 
 const JobDetails = () => {
   return (
@@ -89,9 +90,12 @@ const JobDetails = () => {
               Strong analytical and data-driven decision making skills
             </div>
           </div>
-          <button className="mt-3 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+          <Link
+            className="mt-3 bg-blue-600 flex justify-center text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
+            href="/apply-form"
+          >
             Apply Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

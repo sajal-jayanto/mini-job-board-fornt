@@ -1,3 +1,4 @@
+import ApplicationForm from "@/components/ApplicationForm";
 import { CiLocationOn, CiStopwatch } from "react-icons/ci";
 import { FcKindle } from "react-icons/fc";
 import { MdOutlineAttachMoney } from "react-icons/md";
@@ -33,21 +34,7 @@ const ApplyForm = () => {
               Posted 2 days ago
             </p>
           </div>
-          <div className="m-2">
-            <label>Full Name *</label>
-            <input className="mt-1 h-9 w-full border border-gray-300 rounded-md text-black text-base pl-4" />
-          </div>
-          <div className="m-2">
-            <label>Email Address *</label>
-            <input className="mt-1 h-9 w-full border border-gray-300 rounded-md text-black text-base pl-4" />
-          </div>
-          <div className="m-2">
-            <label>CV/Resume Link *</label>
-            <input className="mt-1 h-9 w-full border border-gray-300 rounded-md text-black text-base pl-4" />
-          </div>
-          <button className="m-2 mt-3 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
-            Submit
-          </button>
+          <ApplicationForm />
         </div>
       </div>
     </div>
