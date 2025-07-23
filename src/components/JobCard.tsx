@@ -1,6 +1,6 @@
 import { CiLocationOn } from "react-icons/ci";
 import { CiStopwatch } from "react-icons/ci";
-export default function Card() {
+const JobCard = () => {
   return (
     <>
       <div className="flex items-center w-full max-w-4xl mx-auto mb-6">
@@ -35,4 +35,6 @@ export default function Card() {
       </div>
     </>
   );
-}
+};
+
+export default JobCard;
