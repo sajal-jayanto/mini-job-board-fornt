@@ -20,12 +20,25 @@ const ApplicationForm = () => {
     formState: { errors },
   } = useForm<FormValues>({ defaultValues });
 
-  const onSubmit = (value: FormValues) => {
-    const { name, email, resumeLink } = value;
-    console.log(name, email, resumeLink);
-    setSubmitted(true);
-    reset();
-    setTimeout(() => setSubmitted(false), 4000);
+  const onSubmit = async (value: FormValues) => {
+    const { name, email, resumeLink: fileUrl } = value;
+    try {
+      const res = await fetch(`http://localhost:3001/application`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, fileUrl }),
+      });
+      if (!res.ok) {
+        throw new Error("Failed to submit application");
+      }
+      setSubmitted(true);
+      reset();
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch (err) {
+      console.error("Submission error:", err);
+    }
   };
 
   return (

@@ -6,7 +6,7 @@ export type JobType = {
   title: string;
   companyName: string;
   location: string;
-  jobType: "Full-time" | "Part-time" | "Contract" | "Internship" | string;
+  jobType: string;
   salaryRange: string;
   description: string;
   requirements: string;
