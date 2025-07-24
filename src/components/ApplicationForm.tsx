@@ -68,7 +68,7 @@ const ApplicationForm = () => {
         error={errors.email}
       />
       <FormInput
-        label="Full Name"
+        label="CV/Resume link"
         register={register("resumeLink", {
           required: "CV/Resume link is required",
         })}
