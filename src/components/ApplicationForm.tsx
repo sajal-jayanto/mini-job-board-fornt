@@ -23,13 +23,16 @@ const ApplicationForm = () => {
   const onSubmit = async (value: FormValues) => {
     const { name, email, resumeLink: fileUrl } = value;
     try {
-      const res = await fetch(`http://localhost:3001/application`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, fileUrl }),
-      });
+      const res = await fetch(
+        `http://mini-job-board-back-production.up.railway.app/application`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ name, email, fileUrl }),
+        }
+      );
       if (!res.ok) {
         console.log("Internal server error!");
       }

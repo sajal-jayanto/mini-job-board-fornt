@@ -14,7 +14,9 @@ export type JobType = {
 };
 
 const Home = async () => {
-  const res = await fetch("http://localhost:3001/jobs");
+  const res = await fetch(
+    "http://mini-job-board-back-production.up.railway.app/jobs"
+  );
   const jobs = await res.json();
 
   return (

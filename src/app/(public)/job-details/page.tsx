@@ -14,7 +14,9 @@ const JobDetailsPage = () => {
     if (!jobId) return;
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/jobs/${jobId}`);
+        const res = await fetch(
+          `http://mini-job-board-back-production.up.railway.app/jobs/${jobId}`
+        );
         if (!res.ok) {
           throw new Error("Failed to fetch job");
         }

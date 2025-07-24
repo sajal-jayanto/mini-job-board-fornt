@@ -25,13 +25,16 @@ const AdminLogin = () => {
   const onSubmit = async (value: FormValues) => {
     const { email, password } = value;
     try {
-      const res = await fetch(`http://localhost:3001/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await fetch(
+        `http://mini-job-board-back-production.up.railway.app/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         setSubmitted(true);
