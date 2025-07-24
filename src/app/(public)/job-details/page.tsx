@@ -2,7 +2,7 @@
 
 import JobDetails from "@/components/JobDetails";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { JobType } from "../page";
 
 const JobDetailsPage = () => {
@@ -15,7 +15,7 @@ const JobDetailsPage = () => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `http://mini-job-board-back-production.up.railway.app/jobs/${jobId}`
+          `https://mini-job-board-back-production.up.railway.app/jobs/${jobId}`
         );
         if (!res.ok) {
           throw new Error("Failed to fetch job");
@@ -30,9 +30,11 @@ const JobDetailsPage = () => {
   }, [jobId]);
 
   return (
-    <div className="py-12">
-      <JobDetails job={job} />
-    </div>
+    <Suspense fallback={<div>Loading job details...</div>}>
+      <div className="py-12">
+        <JobDetails job={job} />
+      </div>
+    </Suspense>
   );
 };
 

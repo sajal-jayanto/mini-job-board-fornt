@@ -26,7 +26,7 @@ const AdminLogin = () => {
     const { email, password } = value;
     try {
       const res = await fetch(
-        `http://mini-job-board-back-production.up.railway.app/login`,
+        `https://mini-job-board-back-production.up.railway.app/login`,
         {
           method: "POST",
           headers: {

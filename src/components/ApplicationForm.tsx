@@ -24,7 +24,7 @@ const ApplicationForm = () => {
     const { name, email, resumeLink: fileUrl } = value;
     try {
       const res = await fetch(
-        `http://mini-job-board-back-production.up.railway.app/application`,
+        `https://mini-job-board-back-production.up.railway.app/application`,
         {
           method: "POST",
           headers: {

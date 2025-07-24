@@ -48,23 +48,26 @@ const CreateJobsForm = () => {
     } = value;
     try {
       const token = await getAuthToken();
-      const res = await fetch(`http://localhost:3001/jobs`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          title,
-          companyName,
-          location,
-          jobType,
-          salaryRange,
-          description,
-          requirements,
-          benefits,
-        }),
-      });
+      const res = await fetch(
+        `https://mini-job-board-back-production.up.railway.app/jobs`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title,
+            companyName,
+            location,
+            jobType,
+            salaryRange,
+            description,
+            requirements,
+            benefits,
+          }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         console.log(data);
